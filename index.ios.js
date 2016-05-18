@@ -9,7 +9,8 @@ class StopWatch extends Component {
 
     this.state = {
       timeElapsed: null,
-      running: false
+      running: false,
+      startTime: null
     }
   }
 
@@ -40,12 +41,14 @@ class StopWatch extends Component {
       this.setState({ running: false });
       return 
     }
+    
+    this.setState({
+      startTime: new Date()
+    })
 
-    const startTime = new Date();
-
-     this.interval = setInterval(() => {
+    this.interval = setInterval(() => {
       this.setState({ 
-        timeElapsed: new Date() - startTime,
+        timeElapsed: new Date() - this.state.startTime,
         running: true
       });
     }, 30);
