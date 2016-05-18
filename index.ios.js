@@ -8,7 +8,8 @@ class StopWatch extends Component {
     super(props);
 
     this.state = {
-      timeElapsed: null
+      timeElapsed: null,
+      running: false
     }
   }
 
@@ -34,10 +35,19 @@ class StopWatch extends Component {
   }
 
   _onButtonPress(){
+    if(this.state.running){
+      clearInterval(this.interval);
+      this.setState({ running: false });
+      return 
+    }
+
     const startTime = new Date();
 
-    setInterval(() => {
-      this.setState({ timeElapsed: new Date() - startTime});
+     this.interval = setInterval(() => {
+      this.setState({ 
+        timeElapsed: new Date() - startTime,
+        running: true
+      });
     }, 30);
 
   }
@@ -50,7 +60,7 @@ class StopWatch extends Component {
       style={[style.button, style.startButton]}
       >
       <Text>
-        Start
+        { this.state.running ? 'Stop' : 'Start' }
       </Text>
     </TouchableHighlight>
   }
