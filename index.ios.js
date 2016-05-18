@@ -1,3 +1,5 @@
+import formatTime from 'minutes-seconds-milliseconds';
+
 import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet, AppRegistry } from 'react-native';
 
@@ -15,7 +17,7 @@ class StopWatch extends Component {
       <View style={[style.header, this._border('yellow')]}>  
         <View style={[style.timerWrapper, this._border('red')]}>
           <Text>
-            {this.state.timeElapsed}
+            { formatTime(this.state.timeElapsed) }
           </Text>
         </View>
         <View style={[style.buttonWrapper, this._border('green')]}>  
