@@ -53,11 +53,12 @@ class StopWatch extends Component {
   }
 
   renderStartStopButton(){
+    const style = this.state.running ? styles.stopButton : styles.startButton;
 
     return <TouchableHighlight
       underlayColor='gray'
       onPress={this._onButtonPress.bind(this)}
-      style={[styles.button, styles.startButton]}
+      style={[styles.button, style]}
       >
       <Text>
         { this.state.running ? 'Stop' : 'Start' }
@@ -116,6 +117,9 @@ const styles = StyleSheet.create({
   },
   startButton: {
     borderColor: '#00cc00'
+  },
+  stopButton: {
+    borderColor: '#cc0000'
   }
 });
 
