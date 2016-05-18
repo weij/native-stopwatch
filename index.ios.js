@@ -14,19 +14,19 @@ class StopWatch extends Component {
   }
 
   render(){
-    return <View style={style.container}>
-      <View style={[style.header, this._border('yellow')]}>  
-        <View style={[style.timerWrapper, this._border('red')]}>
-          <Text style={style.timer}>
+    return <View style={styles.container}>
+      <View style={[styles.header, this._border('yellow')]}>  
+        <View style={[styles.timerWrapper, this._border('red')]}>
+          <Text style={styles.timer}>
             { formatTime(this.state.timeElapsed) }
           </Text>
         </View>
-        <View style={[style.buttonWrapper, this._border('green')]}>  
+        <View style={[styles.buttonWrapper, this._border('green')]}>  
           {this.renderStartStopButton()}
           {this.renderLapButton()}
         </View>
       </View>
-      <View style={[style.footer, this._border('blue')]}>
+      <View style={[styles.footer, this._border('blue')]}>
         <Text>
           list of laps
         </Text>
@@ -57,7 +57,7 @@ class StopWatch extends Component {
     return <TouchableHighlight
       underlayColor='gray'
       onPress={this._onButtonPress.bind(this)}
-      style={[style.button, style.startButton]}
+      style={[styles.button, styles.startButton]}
       >
       <Text>
         { this.state.running ? 'Stop' : 'Start' }
@@ -66,7 +66,7 @@ class StopWatch extends Component {
   }
 
   renderLapButton(){
-    return <View style={style.button}>
+    return <View style={styles.button}>
       <Text>
         Lap
       </Text>
@@ -81,7 +81,7 @@ class StopWatch extends Component {
   }  
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'stretch'
