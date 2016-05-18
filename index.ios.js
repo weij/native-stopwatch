@@ -10,7 +10,8 @@ class StopWatch extends Component {
     this.state = {
       timeElapsed: null,
       running: false,
-      startTime: null
+      startTime: null,
+      laps: []
     }
   }
 
@@ -28,9 +29,7 @@ class StopWatch extends Component {
         </View>
       </View>
       <View style={[styles.footer, this._border('blue')]}>
-        <Text>
-          list of laps
-        </Text>
+          { this.renderLaps() }
       </View>  
     </View>
   }
@@ -69,12 +68,37 @@ class StopWatch extends Component {
     </TouchableHighlight>
   }
 
+  _onLapButtonPress(){
+    const lap = this.state.timeElapsed;
+    this.setState({
+      startTime: new Date(),
+      laps: this.state.laps.concat([lap])
+    });
+  }
+
   renderLapButton(){
-    return <View style={styles.button}>
+    return <TouchableHighlight 
+      style={styles.button}
+      underlayColor='gray'
+      onPress={this._onLapButtonPress.bind(this)}
+      >
       <Text>
         Lap
       </Text>
-    </View>
+    </TouchableHighlight>
+  }
+
+  renderLaps(){
+    return this.state.laps.map( (lap, index) => {
+      return <View key={index}>
+        <Text>
+          Lap #{index + 1}
+        </Text>
+        <Text>
+          {formatTime(lap)}
+        </Text>
+      </View>
+    });
   }
 
   _border(color){
