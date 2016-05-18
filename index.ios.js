@@ -16,13 +16,13 @@ class StopWatch extends Component {
     return <View style={style.container}>
       <View style={[style.header, this._border('yellow')]}>  
         <View style={[style.timerWrapper, this._border('red')]}>
-          <Text>
+          <Text style={style.timer}>
             { formatTime(this.state.timeElapsed) }
           </Text>
         </View>
         <View style={[style.buttonWrapper, this._border('green')]}>  
-          {this._renderStartStopButton()}
-          {this._renderLapButton()}
+          {this.renderStartStopButton()}
+          {this.renderLapButton()}
         </View>
       </View>
       <View style={[style.footer, this._border('blue')]}>
@@ -42,11 +42,12 @@ class StopWatch extends Component {
 
   }
 
-  _renderStartStopButton(){
+  renderStartStopButton(){
 
     return <TouchableHighlight
       underlayColor='gray'
       onPress={this._onButtonPress.bind(this)}
+      style={[style.button, style.startButton]}
       >
       <Text>
         Start
@@ -54,8 +55,8 @@ class StopWatch extends Component {
     </TouchableHighlight>
   }
 
-  _renderLapButton(){
-    return <View>
+  renderLapButton(){
+    return <View style={style.button}>
       <Text>
         Lap
       </Text>
@@ -91,6 +92,20 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center'
+  },
+  timer: {
+    fontSize: 60
+  },
+  button: {
+    borderWidth: 2,
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  startButton: {
+    borderColor: '#00cc00'
   }
 });
 
